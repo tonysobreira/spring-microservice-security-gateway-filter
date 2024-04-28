@@ -1,0 +1,20 @@
+/webjars/swagger-ui/4.15.5/index.html
+
+
+
+
+
+tutorial swagger
+https://medium.com/@pubuduc.14/swagger-openapi-specification-3-integration-with-spring-cloud-gateway-part-2-1d670d4ab69a
+https://github.com/PubuduC/swagger-openapi-springcloud-integration/blob/main/api-gateway-service/src/main/java/com/anjispringbootseries/apigatewayservice/ApiGatewayServiceApplication.java
+
+config api gateway
+https://github.com/namalfernandolk/cloud-gateway-demo/blob/master/src/main/java/com/namalfernandolk/spring/cloudgatewaydemo/filter/AuthFilter.java
+
+full microservices and gateway filters
+https://medium.com/@ankithahjpgowda/api-gateway-in-spring-boot-3ea804003021
+https://github.com/stars/oldfr/lists/api-gateway
+https://github.com/namalfernandolk/cloud-gateway-demo/blob/master/src/main/resources/application.yml
+
+
+

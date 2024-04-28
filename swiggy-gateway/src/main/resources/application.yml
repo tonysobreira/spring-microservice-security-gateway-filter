@@ -1,3 +1,9 @@
+server:
+  servlet:
+    context-path: /
+  port:
+    8080
+
 spring:
  cloud:
    gateway:
@@ -9,13 +15,14 @@ spring:
          filters:
            - AuthenticationFilter
 
-
        - id: restaurant-service
          uri: lb://RESTAURANT-SERVICE
          predicates:
            - Path=/restaurant/**
          filters:
-           - AuthenticationFilter
+           - name: AuthenticationFilter
+             args:
+               role: ROLE_ADMIN  
 
        - id: identity-service
          uri: lb://IDENTITY-SERVICE
@@ -29,3 +36,29 @@ eureka:
   client:
     service-url:
       defaultZone : http://localhost:8761/eureka/
+      
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /v3/api-docs/swagger-config
+    urls:
+      - url: /v3/api-docs
+        name: API Gateway Service
+        display-name: API Gateway Service
+      - url: /restaurant-service/v3/api-docs
+        name: Restaurant Service
+        display-name: Restaurant Service
+      - url: /swiggy-app/v3/api-docs
+        name: Swiggy App
+        display-name: Swiggy App
+      #- url: /product-service/v3/api-docs
+      #  name: Product Service
+      #  primaryName: Product Service
+      #- url: /price-service/v3/api-docs
+      #  name: Price Service
+      #  primaryName: Price Service
+        

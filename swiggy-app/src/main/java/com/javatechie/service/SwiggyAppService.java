@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class SwiggyAppService {
 
-    @Autowired
-    private RestaurantServiceClient restaurantServiceClient;
+	@Autowired
+	private RestaurantServiceClient restaurantServiceClient;
 
-    public String greeting() {
-        return "Welcome to Swiggy App Service";
-    }
+	public String greeting() {
+		return "Welcome to Swiggy App Service";
+	}
 
-    public OrderResponseDTO checkOrderStatus(String orderId) {
-        return restaurantServiceClient.fetchOrderStatus(orderId);
-    }
+	public OrderResponseDTO checkOrderStatus(String orderId) {
+		return restaurantServiceClient.fetchOrderStatus(orderId);
+	}
+
 }
