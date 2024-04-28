@@ -3,6 +3,7 @@ package com.javatechie.service;
 import com.javatechie.entity.UserCredential;
 import com.javatechie.repository.UserCredentialRepository;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,16 @@ public class AuthService {
 		return jwtService.generateToken(authentication);
 	}
 
-	public void validateToken(String token) {
+	public void validateToken(String token, String role) {
+		
+		if (Objects.nonNull(role)) {
+			String userRole = jwtService.getRolesFromJwtToken(token);
+			
+			if (userRole.equals(role)) {
+				System.out.println("user has role");
+			}
+		}
+		
 		jwtService.validateToken(token);
 	}
 

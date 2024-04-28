@@ -58,7 +58,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 					 
 					return this.webClient
 	                    .get()
-	                    .uri("http://IDENTITY-SERVICE/auth/validate?token=" + authHeader)
+	                    .uri("http://IDENTITY-SERVICE/auth/validate?token=" + authHeader + "&role=" + expectedRole)
 	                    .retrieve()
 	                    .bodyToMono(String.class)
 	                    .flatMap(response -> {

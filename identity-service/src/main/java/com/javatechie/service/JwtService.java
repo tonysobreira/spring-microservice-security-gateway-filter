@@ -29,8 +29,13 @@ public class JwtService {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(", "));
     	
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("authorities", authorities);
+    	Map<String, Object> claims = new HashMap<>();
+    	
+    	if (authorities.isEmpty()) {
+    		claims.put("authorities", "ROLE_USER_SWIGGY_APP");
+    	} else {
+    		claims.put("authorities", authorities);
+    	}
         
         return createToken(claims, authentication.getName());
     }
@@ -48,5 +53,9 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+    
+    public String getRolesFromJwtToken(String token) {
+		return Jwts.parserBuilder().setSigningKey(getSignKey()).build().parseClaimsJws(token).getBody().get("authorities").toString();
+	}
 
 }

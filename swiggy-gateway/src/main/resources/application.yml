@@ -13,7 +13,9 @@ spring:
          predicates:
            - Path=/swiggy/**
          filters:
-           - AuthenticationFilter
+           - name: AuthenticationFilter
+             args:
+              role: ROLE_USER_SWIGGY_APP  
 
        - id: restaurant-service
          uri: lb://RESTAURANT-SERVICE
@@ -22,7 +24,7 @@ spring:
          filters:
            - name: AuthenticationFilter
              args:
-               role: ROLE_ADMIN  
+               role: ROLE_USER_RESTAURANT_SERVICE
 
        - id: identity-service
          uri: lb://IDENTITY-SERVICE
