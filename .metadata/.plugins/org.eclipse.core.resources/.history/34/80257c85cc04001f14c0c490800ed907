@@ -1,0 +1,3 @@
+spring.application.name=api-gateway
+
+spring.cloud.gateway.routes.id=1

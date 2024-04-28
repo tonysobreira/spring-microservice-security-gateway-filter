@@ -1,0 +1,24 @@
+package com.project.demomicroserviceopenfeign.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+@RestController
+public class OpenFeignController {
+	
+	@Autowired
+	private final InternalServiceClient internalServiceClient;
+
+	@Autowired
+    private final ExternalServiceClient externalServiceClient;
+
+    @GetMapping("/internal")
+    public String internalCall() {
+        return "this is internal OpenFeign call: " + internalServiceClient.getInternalResource();
+    }
+
+    @GetMapping("/external")
+    public ResponseEntity<String> externalCall() {
+        return externalServiceClient.getExternalResource("API_KEY", "SEARCH_ENGINE", "SEARCH_QUERY");
+    }
+
+}

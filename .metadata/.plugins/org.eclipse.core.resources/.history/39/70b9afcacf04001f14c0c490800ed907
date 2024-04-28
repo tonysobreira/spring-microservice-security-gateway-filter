@@ -1,0 +1,5 @@
+package com.project.demomicroserviceopenfeign.common.internal;
+
+public class InternalServiceClient {
+
+}

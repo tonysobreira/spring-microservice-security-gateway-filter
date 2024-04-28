@@ -1,0 +1,5 @@
+package com.project.demomicroserviceopenfeign.controller;
+
+public class OpenFeignController {
+
+}
