@@ -1,4 +1,0 @@
-GitRepositoriesView.GitDirectories=C\:\\Programming\\spring-microservices-security\\eureka-service-registry\\.git;C\:\\Programming\\spring-microservices-security\\spring-cloud-api-gateway\\.git;C\:\\Programming\\spring-microservices-security\\authentication-server\\.git;C\:\\Programming\\spring-microservices-security\\first-microservice\\.git;C\:\\Programming\\spring-microservices-security\\second-microservice\\.git;
-GitRepositoriesView.GitDirectories.relative=eureka-service-registry\\.git;spring-cloud-api-gateway\\.git;authentication-server\\.git;first-microservice\\.git;second-microservice\\.git;
-core_autoIgnoreDerivedResources=false
-eclipse.preferences.version=1

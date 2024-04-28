@@ -1,5 +1,0 @@
-package com.project.demomicroserviceopenfeign.common.external;
-
-public class ExternalServiceClient {
-
-}

@@ -1,5 +1,0 @@
-spring.application.name=demo-microservice-open-feign
-
-server.port=7090
-
-eureka.client.service-url.defaultZone=http://localhost:9999/eureka
