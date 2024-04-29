@@ -18,3 +18,6 @@ https://github.com/namalfernandolk/cloud-gateway-demo/blob/master/src/main/resou
 
 
 
+Spring Boot API Security with JWT and Role-Based Authorization
+https://medium.com/@akhileshanand/spring-boot-api-security-with-jwt-and-role-based-authorization-fea1fd7c9e32
+

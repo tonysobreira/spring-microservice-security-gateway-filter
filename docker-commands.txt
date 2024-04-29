@@ -1,0 +1,21 @@
+docker network create local-network
+
+./mvnw clean package -DskipTests
+
+docker build -t swiggy-service-registry .
+docker build -t swiggy-gateway .
+docker build -t swiggy-app .
+docker build -t restaurant-service .
+docker build -t identity-service .
+
+
+docker run -d --name swiggy-service-registry --network local-network -p 8761:8761 swiggy-service-registry
+docker run -d --name swiggy-gateway --network local-network -p 8080:8080 swiggy-gateway
+docker run -d --name swiggy-app --network local-network -p 8081:8081 swiggy-app
+docker run -d --name restaurant-service --network local-network -p 8082:8082 restaurant-service
+docker run -d --name identity-service --network local-network -p 9898:9898 identity-service
+
+
+docker-compose up -d --build
+docker-compose down
+
