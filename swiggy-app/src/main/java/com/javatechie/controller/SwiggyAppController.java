@@ -3,6 +3,7 @@ package com.javatechie.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,14 @@ public class SwiggyAppController {
 	}
 
 	@GetMapping("/{orderId}")
-	public OrderResponseDTO checkOrderStatus(@PathVariable String orderId) {
+	public OrderResponseDTO checkOrderStatus(@PathVariable String orderId, @RequestHeader("loggedInUser") String username) {
+		System.out.println("Logged in user deteails: " + username);
 		return service.checkOrderStatus(orderId);
+	}
+
+	@GetMapping("/public")
+	public String getPublic() {
+		return "public content";
 	}
 
 }
