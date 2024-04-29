@@ -1,0 +1,6 @@
+docker network create local-network
+docker-compose -f docker-compose.yml up
+
+docker-compose up -d --build
+docker-compose down
+
