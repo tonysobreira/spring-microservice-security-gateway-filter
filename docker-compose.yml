@@ -8,6 +8,8 @@ services:
     #networks:
     #  - local-network
     restart: always
+    build:
+      context: ./swiggy-service-registry/
 
   swiggy-gateway:
     image: "swiggy-gateway"
@@ -23,6 +25,8 @@ services:
       - EUREKA_INSTANCE_HOSTNAME=swiggy-service-registry
       - EUREKA_INSTANCE_PREFER-IP-ADDRESS=true
     restart: always
+    build:
+      context: ./swiggy-gateway/
 
   swiggy-app:
     image: "swiggy-app"
@@ -38,6 +42,8 @@ services:
       - EUREKA_INSTANCE_HOSTNAME=swiggy-service-registry
       - EUREKA_INSTANCE_PREFER-IP-ADDRESS=true
     restart: always
+    build:
+      context: ./swiggy-app/
 
   restaurant-service:
     image: "restaurant-service"
@@ -53,6 +59,8 @@ services:
       - EUREKA_INSTANCE_HOSTNAME=swiggy-service-registry
       - EUREKA_INSTANCE_PREFER-IP-ADDRESS=true
     restart: always
+    build:
+      context: ./restaurant-service/
 
   identity-service:
     image: "identity-service"
@@ -74,6 +82,8 @@ services:
       - SPRING_DATASOURCE_PASSWORD=1234
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     restart: always
+    build:
+      context: ./identity-service/
 
 networks:
   default:
