@@ -1,5 +1,13 @@
 FROM openjdk:17
-WORKDIR /app
-COPY ./target/swiggy-gateway-0.0.1-SNAPSHOT.jar /app
+
 EXPOSE 8080
-CMD ["java", "-jar", "swiggy-gateway-0.0.1-SNAPSHOT.jar"]
+
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw mvnw.cmd pom.xml ./
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]

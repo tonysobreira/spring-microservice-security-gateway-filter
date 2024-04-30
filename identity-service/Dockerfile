@@ -1,5 +1,13 @@
 FROM openjdk:17
-WORKDIR /app
-COPY ./target/identity-service-0.0.1-SNAPSHOT.jar /app
+
 EXPOSE 9898
-CMD ["java", "-jar", "identity-service-0.0.1-SNAPSHOT.jar"]
+
+WORKDIR /app
+
+COPY .mvn/ .mvn
+COPY mvnw mvnw.cmd pom.xml ./
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]

@@ -4,18 +4,18 @@ services:
     image: "swiggy-service-registry"
     container_name: swiggy-service-registry
     ports:
-      - "8761:8761"
-    networks:
-      - app
+      - 8761:8761
+    #networks:
+    #  - local-network
     restart: always
 
   swiggy-gateway:
     image: "swiggy-gateway"
     container_name: swiggy-gateway
     ports:
-      - "8080:8080"
-    networks:
-      - app
+      - 8080:8080
+    #networks:
+    #  - local-network
     depends_on:
       - swiggy-service-registry
     environment:
@@ -28,9 +28,9 @@ services:
     image: "swiggy-app"
     container_name: swiggy-app
     ports:
-      - "8081:8081"
-    networks:
-      - app
+      - 8081:8081
+    #networks:
+    #  - local-network
     depends_on:
       - swiggy-service-registry
     environment:
@@ -43,9 +43,9 @@ services:
     image: "restaurant-service"
     container_name: restaurant-service
     ports:
-      - "8082:8082"
-    networks:
-      - app
+      - 8082:8082
+    #networks:
+    #  - local-network
     depends_on:
       - swiggy-service-registry
     environment:
@@ -58,36 +58,24 @@ services:
     image: "identity-service"
     container_name: identity-service
     ports:
-      - "9898:9898"
-    networks:
-      - app
+      - 9898:9898
+    #networks:
+    #  - local-network
     depends_on:
       - swiggy-service-registry
-      - db
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://swiggy-service-registry:8761/eureka
       - EUREKA_INSTANCE_HOSTNAME=swiggy-service-registry
       - EUREKA_INSTANCE_PREFER-IP-ADDRESS=true
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1234
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:25432/testdb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/testdb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=1234
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
     restart: always
 
-  db:
-    image: postgres:16.2-alpine
-    container_name: db
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=1234
-      - POSTGRES_DB=testdb
-    ports:
-      - 25432:5432
-    networks:
-      - app
-
-networks: 
-  app:
+networks:
+  default:
+    name: local-network
+    external: true
