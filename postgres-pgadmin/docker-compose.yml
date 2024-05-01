@@ -1,11 +1,11 @@
 version: "3.8"
 services:
-  postgres:
+  postgres2:
     image: postgres:16.2
-    container_name: postgres
+    container_name: postgres2
     restart: always
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./data/pgadmin:/var/lib/pgadmin
     depends_on:
-      - postgres
+      - postgres2
 
 networks:
   default:
